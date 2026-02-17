@@ -1,0 +1,691 @@
+/* ============================================================
+   HOW THIS FILE IS ORGANISED
+   Reading order matters in CSS — rules that come later can
+   override rules that came earlier. We structure this file
+   from most general (reset, globals) to most specific (sections).
+
+   Table of contents:
+     1.  CSS Reset
+     2.  CSS Custom Properties (variables)
+     3.  Base / Global Styles
+     4.  Utility: .container
+     5.  Buttons
+     6.  Header
+     7.  Hero Section
+     8.  Info Section
+     9.  Quote Section
+     10. Call-to-Action Section
+     11. Footer
+============================================================ */
+
+
+/* ============================================================
+   1. CSS RESET
+
+   Problem: every browser (Chrome, Firefox, Safari) ships with
+   its own default stylesheet. That means <h1> tags might be
+   slightly different sizes, <ul> lists might have different
+   padding, and so on. This causes inconsistent layouts across
+   browsers.
+
+   Solution: the reset below strips those defaults so we start
+   with a blank, consistent slate across all browsers.
+
+   The * selector means "select every single element on the page".
+   *::before and *::after catch pseudo-elements too.
+============================================================ */
+*,
+*::before,
+*::after {
+  /* 
+    box-sizing: border-box changes how width and height are calculated.
+
+    DEFAULT (content-box): width = content only. If you set width: 200px
+    and add padding: 20px, the element becomes 240px wide. Confusing!
+
+    border-box: width = content + padding + border combined. So
+    width: 200px stays 200px no matter what padding you add. 
+    This is almost always what you actually want.
+  */
+  box-sizing: border-box;
+
+  /*
+    Browsers add default margin/padding to many elements.
+    For example, <body> has an 8px margin, <h1> has top/bottom margin,
+    <ul> has left padding for the bullets, etc.
+    
+    Setting both to 0 here removes all of those defaults. We then
+    add back only the spacing we actually want, where we want it.
+  */
+  margin: 0;
+  padding: 0;
+}
+
+
+/* ============================================================
+   2. CSS CUSTOM PROPERTIES (VARIABLES)
+
+   Custom properties (also called CSS variables) let you define
+   a value once and reuse it everywhere with var(--name).
+
+   Why use them?
+     - If the brand blue changes, you update ONE line instead of
+       hunting through the whole stylesheet.
+     - It documents your design system — someone reading the file
+       immediately sees all the colours and sizes in one place.
+     - They make your CSS consistent — you can't accidentally use
+       #3882f6 in one place and #3882F6 in another.
+
+   :root is a special selector that refers to the <html> element.
+   Variables defined here are available everywhere in the stylesheet.
+============================================================ */
+:root {
+
+  /* ── COLOURS ─────────────────────────────────────────────────
+    Named by their ROLE (what they're for), not their appearance.
+    "color-dark-bg" is better than "color-navy" because if you
+    change the shade, the name still makes sense.
+  ──────────────────────────────────────────────────────────── */
+  --color-dark-bg:      #1F2937;  /* header, hero, footer background */
+  --color-light-bg:     #FFFFFF;  /* info & CTA section background */
+  --color-quote-bg:     #E5E7EB;  /* quote section background */
+  --color-accent:       #3882F6;  /* buttons & CTA card — the brand blue */
+
+  --color-hero-heading: #F9FAF8;  /* near-white — main hero h1 */
+  --color-hero-sub:     #E5E7EB;  /* light grey — hero paragraph & nav links */
+  --color-body:         #1F2937;  /* near-black — text on white backgrounds */
+  --color-muted:        #6B7280;  /* mid-grey — card subtext, placeholders */
+
+  /* ── FONT SIZES ───────────────────────────────────────────────
+    Taken directly from the design spec image. Centralising them
+    here means if the design changes, you update one number.
+  ──────────────────────────────────────────────────────────── */
+  --fs-logo:     24px;  /* header logo */
+  --fs-nav:      18px;  /* nav links */
+  --fs-hero-h1:  48px;  /* "This website is awesome" */
+  --fs-hero-sub: 18px;  /* hero paragraph */
+  --fs-info-h2:  36px;  /* "Some random information." */
+  --fs-quote:    36px;  /* blockquote text */
+  --fs-body:     16px;  /* default body text */
+
+  /* ── LAYOUT ───────────────────────────────────────────────── */
+  --max-width: 960px;
+  /*
+    960px is the max content width. On screens wider than this,
+    the content stops growing and sits centred. This prevents
+    paragraphs from becoming uncomfortably wide on large monitors.
+    The .container class (below) uses this variable.
+  */
+}
+
+
+/* ============================================================
+   3. BASE / GLOBAL STYLES
+
+   These rules apply to broad elements (body, a) and set sensible
+   defaults that cascade down to every element on the page.
+   CSS "cascades" — child elements inherit styles from parents,
+   which is why setting font-family on body affects everything inside it.
+============================================================ */
+body {
+  font-family: 'Roboto', sans-serif;
+  /*
+    'Roboto' is the font we loaded from Google Fonts.
+    'sans-serif' is the fallback — if Roboto fails to load for any
+    reason (no internet, typo in font URL, etc.), the browser uses
+    its default sans-serif font instead of an ugly serif font.
+    Always include a generic fallback.
+  */
+
+  font-size: var(--fs-body);
+  /*
+    Setting a base font-size on body means all text inherits this
+    as a starting point. We only need to override it on elements
+    that need a different size.
+  */
+
+  color: var(--color-body);
+  /*
+    Setting color here means all text on the page defaults to
+    our near-black. We override it with lighter colours where
+    elements sit on dark backgrounds.
+  */
+
+  line-height: 1.5;
+  /*
+    line-height controls the vertical space between lines of text.
+    1.5 means 1.5× the font size — so at 16px font, lines are 24px
+    apart. This is the recommended default for body text readability.
+    A unitless value (1.5 vs 1.5px) scales proportionally if the
+    font size changes, which is why unitless is preferred here.
+  */
+}
+
+a {
+  text-decoration: none;
+  /*
+    By default, browsers underline all links and colour them blue.
+    We strip that here because our design styles links differently.
+    We re-add underlines only where the design calls for it
+    (e.g. on hover in the nav).
+  */
+}
+
+
+/* ============================================================
+   4. UTILITY: .container
+
+   A "utility class" is a small, reusable CSS class with a single
+   job. .container's job is: centre content and limit its width.
+
+   We apply it to many different elements throughout the HTML —
+   this is much better than writing the same centring code over
+   and over for each section.
+============================================================ */
+.container {
+  max-width: var(--max-width);
+
+  /*
+    The element won't grow wider than 960px. On smaller screens,
+    it shrinks to fill the available width automatically.
+  */
+
+  margin-left: auto;
+  margin-right: auto;
+  /*
+    Setting left AND right margins to "auto" is the classic CSS
+    trick for horizontal centring of block elements. The browser
+    divides the remaining space equally on both sides.
+    
+    This only works on block-level elements (div, section, etc.)
+    that have a defined width (or max-width).
+  */
+
+  padding-left: 24px;
+  padding-right: 24px;
+  /*
+    This padding ensures content never touches the very edge of the
+    screen on narrow viewports. Think of it as "breathing room"
+    on the sides. Without it, text would be flush against the
+    phone screen edge on small devices.
+  */
+}
+
+
+/* ============================================================
+   5. BUTTONS
+
+   The two buttons on this page (hero and CTA) look different from
+   each other, but share a lot of base styling. We write the shared
+   styles in .btn once, then create .btn-outline as a modifier that
+   overrides only what needs to change.
+
+   In HTML: class="btn"              → filled blue button
+            class="btn btn-outline"  → transparent/ghost button
+
+   This "base + modifier" pattern avoids duplication and is one
+   of the most important patterns in CSS.
+============================================================ */
+.btn {
+  display: inline-block;
+  /*
+    <a> tags are inline elements by default, meaning you can't
+    set width/height or top/bottom padding on them reliably.
+    inline-block makes the element behave like a block (so padding
+    works correctly) while still sitting inline with surrounding text.
+  */
+
+  background-color: var(--color-accent);  /* blue fill */
+  color: #ffffff;
+
+  font-family: inherit;
+  /*
+    Buttons and inputs don't automatically inherit the font from body —
+    this is one of those browser quirks. "inherit" forces them to use
+    the same font as everything else (Roboto).
+  */
+
+  font-size: var(--fs-body);
+  font-weight: 700;
+
+  padding: 10px 24px;
+  /*
+    Shorthand: padding: [top/bottom] [left/right]
+    10px top and bottom, 24px left and right.
+    This gives the button a "pill-like" comfortable click area.
+  */
+
+  border: 2px solid var(--color-accent);
+  /*
+    We set a border even on the filled button so that the
+    .btn-outline modifier only needs to change the color — the
+    border size is already there. Without this, the outline button
+    would cause layout shift when the border appeared.
+  */
+
+  border-radius: 6px;   /* softly rounded corners */
+  cursor: pointer;      /* shows the hand cursor on hover */
+}
+
+.btn:hover {
+  /*
+    :hover is a "pseudo-class" — it applies styles only when the
+    user's mouse is over the element. We use opacity to subtly dim
+    the button, giving visual feedback that it's interactive.
+  */
+  opacity: 0.88;
+}
+
+/* ── MODIFIER: outline/ghost variant ─────────────────────────
+   This class is ADDED alongside .btn, not instead of it.
+   It only overrides the properties that differ from the base.
+   Everything else (padding, border-radius, font, etc.) stays
+   the same — we get all of that for free from .btn above.
+──────────────────────────────────────────────────────────── */
+.btn-outline {
+  background-color: transparent; /* clear fill — shows the card colour behind */
+  border-color: #ffffff;         /* white border instead of blue */
+  color: #ffffff;
+}
+
+.btn-outline:hover {
+  /*
+    rgba() lets us use a colour with an alpha (transparency) channel.
+    rgba(255, 255, 255, 0.12) = white at 12% opacity.
+    This creates a subtle "frosted" highlight on hover without
+    completely changing the button's appearance.
+  */
+  background-color: rgba(255, 255, 255, 0.12);
+}
+
+
+/* ============================================================
+   6. HEADER
+
+   The header sits at the top of every page. It has a dark
+   background. Inside it, the <nav> uses flexbox to put the
+   logo on the far left and the nav links on the far right.
+============================================================ */
+header {
+  background-color: var(--color-dark-bg);
+  padding: 16px 0;
+  /*
+    padding: 16px 0 means 16px top and bottom, 0 left and right.
+    We don't want horizontal padding here because the <nav> inside
+    already has it via the .container class.
+  */
+}
+
+header nav {
+  /*
+    Flexbox is a layout mode designed for one-dimensional layouts
+    (a row OR a column). We use it here to put the logo and nav
+    links on a single horizontal row.
+
+    When you set display: flex on a parent, its direct children
+    become "flex items" that the parent can position.
+  */
+  display: flex;
+
+  justify-content: space-between;
+  /*
+    justify-content controls how flex items are positioned along
+    the main axis (horizontal, in a row).
+    
+    space-between: pushes the first item to the far left and the
+    last item to the far right, with any remaining items evenly
+    spaced in between. With two items (logo + ul), this puts
+    the logo left and the links right — exactly what the design shows.
+
+    Other values you'll use often:
+      flex-start  — items packed to the left (default)
+      flex-end    — items packed to the right
+      center      — items centred
+      space-around — equal space around each item
+  */
+
+  align-items: center;
+  /*
+    align-items controls positioning on the cross axis (vertical,
+    when flex-direction is row). center makes the logo and nav
+    links vertically centred with each other, even if they have
+    different heights. Without this, they'd align to the top.
+  */
+}
+
+.logo {
+  font-size: var(--fs-logo);
+  font-weight: 700;
+  color: var(--color-hero-heading); /* near-white so it shows on dark bg */
+}
+
+.nav-links {
+  list-style: none;
+  /*
+    By default, <ul> shows bullet points. list-style: none removes
+    them. We don't want bullets in a navigation bar.
+  */
+
+  display: flex;
+  /*
+    Making the <ul> itself a flex container lays its <li> children
+    out in a horizontal row. This is a common pattern for navbars.
+  */
+
+  gap: 24px;
+  /*
+    gap adds space between flex (or grid) children.
+    It's cleaner than using margin on each individual item because
+    it only adds space BETWEEN items, not on the outer edges.
+    24px between each nav link.
+  */
+}
+
+.nav-links a {
+  color: var(--color-hero-sub); /* light grey so it's readable on dark bg */
+  font-size: var(--fs-nav);
+}
+
+.nav-links a:hover {
+  text-decoration: underline;
+  /*
+    We removed all link underlines globally on the <a> selector above.
+    We add it back here specifically on hover, so users get a clear
+    visual indicator that these are clickable links.
+  */
+}
+
+
+/* ============================================================
+   7. HERO SECTION
+
+   The hero has two columns side by side: text on the left,
+   placeholder image on the right. Flexbox handles this layout.
+   The section itself gets the dark background to match the header
+   (they visually merge into one large dark area).
+============================================================ */
+.hero {
+  background-color: var(--color-dark-bg);
+  padding: 80px 0;
+  /*
+    80px of vertical breathing room above and below the content.
+    Hero sections are typically spacious to make them feel impactful.
+  */
+}
+
+.hero-inner {
+  display: flex;
+  align-items: center;
+  /*
+    If the text column is taller than the image column (or vice
+    versa), align-items: center keeps them vertically centred
+    relative to each other, rather than aligning to the top.
+  */
+
+  gap: 48px;
+  /*
+    48px gap between the text column and the image column.
+    More gap than the nav links because these are larger, more
+    important elements that need more breathing room.
+  */
+}
+
+.hero-text {
+  flex: 1;
+}
+
+.hero-image {
+  flex: 1;
+}
+/*
+  flex: 1 is shorthand for flex-grow: 1, flex-shrink: 1, flex-basis: 0.
+  
+  What matters here: both columns get flex: 1, meaning they both
+  grow equally to fill the available space. The result is two equal-
+  width columns. If one had flex: 2, it would be twice as wide.
+  
+  This is much more flexible than setting a fixed width in pixels,
+  because it adapts to the available container width automatically.
+*/
+
+.hero-text h1 {
+  font-size: var(--fs-hero-h1); /* 48px — the largest text on the page */
+  font-weight: 900;             /* maximum boldness */
+  color: var(--color-hero-heading);
+
+  line-height: 1.1;
+  /*
+    Headings usually benefit from tighter line-height than body text.
+    At 48px font size, 1.5 line-height (from body) would feel too
+    loose and airy. 1.1 keeps the headline compact and punchy.
+  */
+
+  margin-bottom: 12px; /* space between heading and the paragraph below */
+}
+
+.hero-text p {
+  font-size: var(--fs-hero-sub);
+  color: var(--color-hero-sub);
+  /*
+    Lower contrast than the white heading. The design spec calls
+    for this — the subtext intentionally fades back so the main
+    heading stays dominant.
+  */
+
+  margin-bottom: 24px; /* space between paragraph and the button below */
+}
+
+.placeholder-img {
+  background-color: #6B7280; /* medium grey — a neutral placeholder colour */
+  border-radius: 4px;
+  height: 240px;
+
+  /*
+    We use flexbox again here — this time just to centre the
+    "placeholder" text inside the grey box both horizontally
+    and vertically. Flexbox is the easiest way to centre content
+    inside a container.
+  */
+  display: flex;
+  align-items: center;     /* vertical centre */
+  justify-content: center; /* horizontal centre */
+}
+
+.placeholder-img p {
+  color: var(--color-hero-sub);
+  font-size: var(--fs-body);
+}
+
+
+/* ============================================================
+   8. INFO SECTION
+
+   White background with a centred heading and four cards in a row.
+   text-align: center on the parent cascades down to the heading.
+   The card grid uses flexbox to place the four cards side by side.
+============================================================ */
+.info-section {
+  background-color: var(--color-light-bg);
+  padding: 80px 0;
+  text-align: center;
+  /*
+    text-align: center is an inherited property — it passes down
+    to all children. This centres the h2 heading AND the card
+    subtext without needing to set it on each individually.
+  */
+}
+
+.info-section h2 {
+  font-size: var(--fs-info-h2); /* 36px */
+  font-weight: 900;
+  color: var(--color-body);
+  margin-bottom: 48px; /* generous space between heading and cards */
+}
+
+.card-grid {
+  display: flex;
+  justify-content: center;
+  /*
+    We use center (not space-between) because we don't want the
+    cards stretched across the full width — we want them grouped
+    in the middle with the gap between them defined by our gap property.
+  */
+  gap: 32px;
+}
+
+.card {
+  width: 150px;
+  /*
+    Fixed width ensures all four cards are the same size regardless
+    of content length. The card-img inside scales to 100% of this.
+  */
+
+  display: flex;
+  flex-direction: column;
+  /*
+    flex-direction: column switches the main axis to vertical.
+    Now flex children (card-img and p) stack top to bottom
+    instead of side to side.
+  */
+
+  align-items: center; /* centres the image box and text horizontally */
+  gap: 12px;           /* space between the image box and the text */
+}
+
+.card-img {
+  width: 100%;
+  /*
+    100% means fill the parent width (150px from .card above).
+    The exact size depends on the parent, not a hardcoded pixel value.
+    This is more flexible and reusable.
+  */
+
+  aspect-ratio: 1 / 1;
+  /*
+    aspect-ratio: 1 / 1 forces the element to be a perfect square
+    (width = height). Because width is 100% (150px), the height
+    automatically becomes 150px too.
+
+    This is much better than setting a fixed height in pixels,
+    because if you change the width, the height updates automatically.
+  */
+
+  border: 3px solid var(--color-accent); /* blue border — brand colour */
+  border-radius: 12px; /* rounded corners */
+}
+
+.card p {
+  font-size: 14px;        /* slightly smaller than body text */
+  color: var(--color-muted); /* muted grey — secondary information */
+  text-align: center;     /* override inherited center just to be explicit */
+}
+
+
+/* ============================================================
+   9. QUOTE / TESTIMONIAL SECTION
+
+   Light grey background. The quote text is large, italic, and
+   light-weight to give it a magazine-editorial feel.
+============================================================ */
+.quote-section {
+  background-color: var(--color-quote-bg);
+  padding: 80px 0;
+}
+
+.quote-inner {
+  max-width: 680px;
+  /*
+    Narrower than the standard 960px container. Long lines of large
+    text (36px) are hard to read if they stretch too wide. 680px
+    keeps the line length comfortable. This is a different value
+    than our standard --max-width so we don't reuse .container here.
+  */
+  margin-left: auto;
+  margin-right: auto; /* same centering trick as .container */
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+blockquote {
+  font-size: var(--fs-quote); /* 36px — large and impactful */
+  font-weight: 300;
+  /*
+    300 is a "light" weight — the opposite of bold. Combined with
+    the italic style below, it gives the quote an elegant,
+    editorial feel, which matches the design spec.
+  */
+  font-style: italic;
+  color: var(--color-body);
+  line-height: 1.3;  /* slightly tighter than body, looser than headings */
+  margin-bottom: 16px;
+}
+
+.quote-author {
+  text-align: right; /* author name sits at the right edge */
+  font-weight: 700;  /* bold to stand out from the italic quote above */
+  color: var(--color-body);
+}
+
+
+/* ============================================================
+   10. CALL-TO-ACTION (CTA) SECTION
+
+   White background section wrapping a blue rounded card.
+   The card uses flexbox to put text on the left, button on the right.
+============================================================ */
+.cta-section {
+  background-color: var(--color-light-bg);
+  padding: 80px 0;
+}
+
+.cta-card {
+  background-color: var(--color-accent); /* the brand blue */
+  border-radius: 10px; /* noticeably rounded to look like a "card" */
+  padding: 40px 48px;
+
+  display: flex;
+  justify-content: space-between;
+  /*
+    space-between with two flex children (cta-text and .btn)
+    pushes the text to the far left and the button to the far right —
+    the same technique we used in the header nav.
+  */
+  align-items: center;
+  gap: 32px;
+  /*
+    gap ensures the text and button don't touch each other even
+    if the container shrinks. space-between handles positioning
+    when there's plenty of space; gap provides the minimum.
+  */
+}
+
+.cta-text h3 {
+  font-size: var(--fs-body); /* same size as body — not a prominent heading */
+  font-weight: 900;
+  color: #ffffff;
+  margin-bottom: 4px;
+}
+
+.cta-text p {
+  font-size: 14px;
+  color: var(--color-hero-sub); /* light grey — readable on the blue bg */
+}
+
+
+/* ============================================================
+   11. FOOTER
+
+   Dark background to match the header — bookending the page
+   with the same colour creates a visual sense of completeness.
+   Simple centred text, nothing elaborate.
+============================================================ */
+footer {
+  background-color: var(--color-dark-bg);
+  padding: 28px 0;
+  text-align: center;
+}
+
+footer p {
+  color: var(--color-hero-sub); /* light grey on dark background */
+  font-size: var(--fs-body);
+}

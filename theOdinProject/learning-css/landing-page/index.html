@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<!--
+  DOCTYPE tells the browser to render in "standards mode".
+  Without this, older browsers use "quirks mode" which causes
+  unexpected layout bugs. Always put this on line 1.
+-->
+<html lang="en">
+<!--
+  lang="en" helps screen readers pronounce text correctly
+  and helps search engines understand the page language.
+-->
+
+<head>
+  <!--
+    Everything inside <head> is metadata — it doesn't appear
+    on the page itself, but it tells the browser and search
+    engines important things about the document.
+  -->
+
+  <meta charset="UTF-8" />
+  <!--
+    charset="UTF-8" tells the browser which character encoding
+    to use. Without this, special characters like © or é may
+    display as garbled symbols.
+  -->
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!--
+    This meta tag controls how the page scales on mobile devices.
+    Without it, phones zoom out and show a shrunken desktop version.
+    Even though this project doesn't need to be responsive, it's
+    good practice to always include it.
+  -->
+
+  <title>Odin Project – Landing Page</title>
+  <!--
+    The text that appears in the browser tab and in search results.
+    Every page should have a unique, descriptive title.
+  -->
+
+  <!-- ── FONTS ─────────────────────────────────────────────────
+    We load Roboto from Google Fonts. Two <link> tags are used:
+    1. rel="preconnect" — tells the browser to open a connection
+       to fonts.googleapis.com early, before it even starts
+       downloading the font. This speeds up the font load.
+    2. The second link is the actual font stylesheet URL.
+       We request the weights (300, 400, 700, 900) and the italic
+       style (ital) that we need. Requesting only what you use
+       keeps the page faster.
+  ──────────────────────────────────────────────────────────── -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,700;0,900;1,300&display=swap" rel="stylesheet" />
+
+  <!-- ── STYLESHEET ────────────────────────────────────────────
+    This links our external CSS file. rel="stylesheet" tells the
+    browser what kind of file it is. href is the path — because
+    styles.css is in the same folder as index.html, we just write
+    the filename. No inline styles anywhere in this HTML file.
+  ──────────────────────────────────────────────────────────── -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <!--
+    Everything inside <body> is what the user actually sees.
+    We divide the page into semantic sections that match the design:
+      1. <header>         — logo + navigation
+      2. <section.hero>   — big intro block
+      3. <section.info>   — four info cards
+      4. <section.quote>  — testimonial / quote
+      5. <section.cta>    — call-to-action card
+      6. <footer>         — copyright
+  -->
+
+
+  <!-- ============================================================
+    HEADER
+    We use the semantic <header> element (not a <div>) because it
+    communicates meaning — it tells the browser, screen readers,
+    and search engines "this is the page header".
+
+    Inside it, <nav> is the semantic element for navigation.
+    Same idea — prefer meaningful elements over generic <div>s
+    whenever possible. This is called "semantic HTML".
+  ============================================================ -->
+  <header>
+    <!--
+      The <nav> gets the "container" class. That class is defined
+      in our CSS to centre content and cap its max-width. By putting
+      it on the <nav> itself (rather than wrapping it in another div),
+      we avoid adding an extra unnecessary element.
+    -->
+    <nav class="container">
+
+      <!--
+        <span> is an inline element used here for the logo text.
+        We use <span> instead of <h1> because the logo is not a
+        page heading — it's a brand label. <h1> should be reserved
+        for the most important heading on the page (the hero heading).
+        Semantic headings matter for accessibility and SEO.
+      -->
+      <span class="logo">Header Logo</span>
+
+      <!--
+        <ul> (unordered list) is the correct element for navigation
+        links because a nav is conceptually a list of links — it has
+        no meaningful order. Screen readers announce lists, which
+        helps users understand the page structure.
+
+        Each link is wrapped in <li> (list item), which is required
+        as a direct child of <ul>. The actual clickable link is <a>.
+        href="#" is a placeholder — in a real site this would be
+        a real URL like "/about" or "/contact".
+      -->
+      <ul class="nav-links">
+        <li><a href="#">header link one</a></li>
+        <li><a href="#">header link two</a></li>
+        <li><a href="#">header link three</a></li>
+      </ul>
+
+    </nav>
+  </header>
+
+
+  <!-- ============================================================
+    HERO SECTION
+    <section> is a semantic element for a standalone thematic block.
+    Use it when a chunk of content could stand on its own with a
+    heading. The "hero" is the big attention-grabbing block at the
+    very top of the page.
+  ============================================================ -->
+  <section class="hero">
+    <!--
+      .hero-inner also gets the "container" class. Two classes on
+      one element is totally fine — "hero-inner" handles the flex
+      layout between text and image, while "container" handles the
+      centring and max-width. Combining classes like this keeps each
+      class focused on one job (separation of concerns).
+    -->
+    <div class="hero-inner container">
+
+      <!-- Left column: heading, subtext, button -->
+      <div class="hero-text">
+        <!--
+          <h1> is the most important heading on the page. There should
+          only be ONE <h1> per page. It's what search engines and
+          screen readers look at first to understand what the page is.
+        -->
+        <h1>This website is awesome</h1>
+
+        <!--
+          <p> (paragraph) for the descriptive subtext.
+          Styling (colour, size) is handled entirely in the CSS.
+        -->
+        <p>
+          This website has some subtext that goes here under the main title.
+          It's a smaller font and the color is lower contrast.
+        </p>
+
+        <!--
+          We use an <a> (anchor) tag styled to look like a button,
+          rather than an actual <button> element. The rule of thumb:
+            - Use <button> for actions that happen on the same page
+              (e.g. submitting a form, opening a modal).
+            - Use <a> for navigation — links that take you somewhere.
+          Since "Sign up" would take you to a signup page, <a> is
+          the right choice here.
+        -->
+        <a href="#" class="btn">Sign up</a>
+      </div>
+
+      <!-- Right column: image placeholder -->
+      <div class="hero-image">
+        <!--
+          In a real project this would be an <img> tag. For now,
+          we use a <div> styled with CSS to look like a grey box.
+          The <p> inside it is just label text.
+        -->
+        <div class="placeholder-img">
+          <p>this is a placeholder for an image</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+    INFO SECTION
+    A white-background section with a heading and four cards.
+  ============================================================ -->
+  <section class="info-section">
+    <div class="container">
+
+      <!--
+        <h2> is the second-level heading, which is correct here
+        because <h1> already exists in the hero. Headings should
+        follow a logical order (h1 → h2 → h3) — never skip levels
+        just for styling purposes. Use CSS to change how they look.
+      -->
+      <h2>Some random information.</h2>
+
+      <!--
+        .card-grid is a <div> that will become a flex container in
+        CSS. Its only job is to lay the cards out in a row. Each
+        .card is a child of this grid.
+      -->
+      <div class="card-grid">
+
+        <!--
+          Each card is a <div> containing a placeholder image box
+          and a paragraph of subtext. The structure is the same for
+          all four — when structure repeats, that's a sign your HTML
+          is well organised and your CSS class can be reused.
+        -->
+        <div class="card">
+          <div class="card-img"></div>
+          <!--
+            The empty <div class="card-img"> is a CSS-styled
+            placeholder. In a real project, replace this with:
+            <img src="your-image.png" alt="description of image" />
+            The alt attribute is required for accessibility — screen
+            readers read it aloud for users who can't see images.
+          -->
+          <p>this is some subtext under an illustration or image</p>
+        </div>
+
+        <div class="card">
+          <div class="card-img"></div>
+          <p>this is some subtext under an illustration or image</p>
+        </div>
+
+        <div class="card">
+          <div class="card-img"></div>
+          <p>this is some subtext under an illustration or image</p>
+        </div>
+
+        <div class="card">
+          <div class="card-img"></div>
+          <p>this is some subtext under an illustration or image</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+    QUOTE / TESTIMONIAL SECTION
+  ============================================================ -->
+  <section class="quote-section">
+    <!--
+      .quote-inner is a narrower container than the standard
+      .container. We don't reuse .container here because the quote
+      needs a different max-width (680px vs 960px). Rather than
+      overriding the container class, we make a dedicated wrapper.
+      This keeps each class doing one clear job.
+    -->
+    <div class="quote-inner">
+
+      <!--
+        <blockquote> is the semantic HTML element for a quotation.
+        Use it when quoting something said by a person or source —
+        don't just use a <p> with italic styling. Semantic elements
+        carry meaning that CSS alone cannot.
+      -->
+      <blockquote>
+        "This is an inspiring quote, or a testimonial from a customer.
+        Maybe it's just filling up space, or maybe people will actually
+        read it. Who knows? All I know is that it looks nice."
+      </blockquote>
+
+      <!--
+        The author line is a regular <p> with a class so we can
+        right-align and bold it in CSS.
+      -->
+      <p class="quote-author">-Thor, God of Thunder</p>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+    CALL-TO-ACTION (CTA) SECTION
+    A section with a blue rounded card containing text and a button.
+  ============================================================ -->
+  <section class="cta-section">
+    <div class="container">
+
+      <!--
+        .cta-card is the blue rounded box. It uses flexbox to push
+        the text to the left and the button to the right.
+      -->
+      <div class="cta-card">
+
+        <div class="cta-text">
+          <!--
+            <h3> is correct here — it's the third level heading on
+            the page (h1 hero → h2 info section → h3 cta).
+            Maintaining this hierarchy matters for screen readers
+            and SEO.
+          -->
+          <h3>Call to action! It's time!</h3>
+          <p>Sign up for our product by clicking that button right over there!</p>
+        </div>
+
+        <!--
+          This button gets TWO classes: "btn" and "btn-outline".
+          "btn" provides all the base button styles (padding, font,
+          border-radius). "btn-outline" overrides just the background
+          and border to create the transparent/ghost variant.
+          This is the "modifier class" pattern — write base styles
+          once and layer variations on top.
+        -->
+        <a href="#" class="btn btn-outline">Sign up</a>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+    FOOTER
+    <footer> is the semantic element for page footer content.
+    Like <header> and <nav>, it carries meaning beyond just a <div>.
+  ============================================================ -->
+  <footer>
+    <!--
+      &copy; is an HTML entity — a special code for the © symbol.
+      HTML entities are used for characters that either can't be
+      typed easily or have special meaning in HTML (like < and >).
+      Other common ones: &amp; (&), &nbsp; (non-breaking space).
+    -->
+    <p>Copyright &copy; The Odin Project 2021</p>
+  </footer>
+
+</body>
+</html>
