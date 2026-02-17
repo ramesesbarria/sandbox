@@ -1,0 +1,583 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Foundations Demo: HTML + CSS</title>
+    <meta name="description" content="Foundations demo for HTML & CSS with preview + code side-by-side." />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+      <div class="container stack-sm">
+        <div class="row space-between center wrap gap-sm">
+          <div class="stack-xs">
+            <p class="eyebrow">Foundations / Reference</p>
+            <h1 class="title">HTML + CSS Concepts You’ve Covered</h1>
+            <p class="muted">
+              Left = <strong>Demo</strong> • Right = <strong>Exact code</strong>. Only topics from your current progress.
+            </p>
+          </div>
+
+          <nav class="nav row gap-sm wrap" aria-label="Sections">
+            <a href="#html">HTML</a>
+            <a href="#css">CSS</a>
+            <a href="#flexbox">Flexbox</a>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <main id="main" class="container stack-xl">
+      <!-- =======================================
+           HTML FOUNDATIONS
+      ======================================== -->
+      <section id="html" class="stack-lg">
+        <header class="section-header stack-xs">
+          <h2>HTML Foundations</h2>
+          <p class="muted">Boilerplate, tags/elements, text, lists, links, and images.</p>
+        </header>
+
+        <!-- Intro to HTML and CSS -->
+        <article class="card stack-sm">
+          <div class="example-header">
+            <h3>Introduction to HTML and CSS</h3>
+            <p class="muted">HTML structures content. CSS styles it. Usually: HTML links to an external CSS file.</p>
+          </div>
+
+          <div class="example-grid">
+            <div class="panel preview stack-sm">
+              <p>
+                This page is HTML. Its look comes from CSS. The HTML file includes:
+                <code>&lt;link rel="stylesheet" href="styles.css"&gt;</code>
+              </p>
+              <div class="demo-note">
+                Inspect this element in DevTools → you’ll see its CSS rules.
+              </div>
+            </div>
+
+            <div class="panel code stack-xs">
+              <p class="panel-title">HTML</p>
+              <pre><code>&lt;!-- In your HTML &lt;head&gt; --&gt;
+&lt;link rel="stylesheet" href="styles.css" /&gt;</code></pre>
+
+              <p class="panel-title">CSS</p>
+              <pre><code>/* In styles.css */
+.demo-note {
+  border: 1px solid rgba(255,255,255,0.12);
+  padding: 12px;
+  border-radius: 12px;
+}</code></pre>
+            </div>
+          </div>
+        </article>
+
+        <!-- Elements and Tags -->
+        <article class="card stack-sm">
+          <div class="example-header">
+            <h3>Elements and Tags</h3>
+            <p class="muted">An element is usually: opening tag + content + closing tag. Some are self-closing/void.</p>
+          </div>
+
+          <div class="example-grid">
+            <div class="panel preview stack-sm">
+              <p><strong>Normal element:</strong> <code>&lt;p&gt;Hello&lt;/p&gt;</code></p>
+              <p><strong>Void element:</strong> line break here<br />see?</p>
+              <p class="muted">
+                Attributes live inside the opening tag (example: <code>href</code>, <code>src</code>, <code>alt</code>).
+              </p>
+            </div>
+
+            <div class="panel code stack-xs">
+              <p class="panel-title">HTML</p>
+              <pre><code>&lt;p&gt;Hello&lt;/p&gt;
+
+&lt;br /&gt;
+
+&lt;a href="https://example.com"&gt;A link&lt;/a&gt;</code></pre>
+
+              <details class="note">
+                <summary>Quick rule</summary>
+                <p>Void elements have no closing tag (e.g. <code>&lt;img&gt;</code>, <code>&lt;br&gt;</code>, <code>&lt;hr&gt;</code>).</p>
+              </details>
+            </div>
+          </div>
+        </article>
+
+        <!-- HTML Boilerplate -->
+        <article class="card stack-sm">
+          <div class="example-header">
+            <h3>HTML Boilerplate</h3>
+            <p class="muted">Minimum structure for a modern HTML page.</p>
+          </div>
+
+          <div class="example-grid">
+            <div class="panel preview stack-sm">
+              <p class="muted">
+                You won’t “see” boilerplate on the page, but every page needs it.
+              </p>
+              <div class="demo-note">
+                Tip: Use <code>!</code> + Tab in VS Code to generate boilerplate.
+              </div>
+            </div>
+
+            <div class="panel code stack-xs">
+              <p class="panel-title">HTML</p>
+              <pre><code>&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+  &lt;head&gt;
+    &lt;meta charset="utf-8" /&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1" /&gt;
+    &lt;title&gt;My Page&lt;/title&gt;
+    &lt;link rel="stylesheet" href="styles.css" /&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Hello&lt;/h1&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+            </div>
+          </div>
+        </article>
+
+        <!-- Working with Text -->
+        <article class="card stack-sm">
+          <div class="example-header">
+            <h3>Working with Text</h3>
+            <p class="muted">Headings, paragraphs, emphasis, strong importance, inline code.</p>
+          </div>
+
+          <div class="example-grid">
+            <div class="panel preview stack-xs">
+              <h4>This is an H4 heading</h4>
+              <p>
+                This is a paragraph with <strong>strong</strong> and <em>emphasis</em>.
+                Here is <code>inline code</code>.
+              </p>
+            </div>
+
+            <div class="panel code stack-xs">
+              <p class="panel-title">HTML</p>
+              <pre><code>&lt;h4&gt;This is an H4 heading&lt;/h4&gt;
+
+&lt;p&gt;
+  This is a paragraph with &lt;strong&gt;strong&lt;/strong&gt; and
+  &lt;em&gt;emphasis&lt;/em&gt;. Here is &lt;code&gt;inline code&lt;/code&gt;.
+&lt;/p&gt;</code></pre>
+            </div>
+          </div>
+        </article>
+
+        <!-- Lists -->
+        <article class="card stack-sm">
+          <div class="example-header">
+            <h3>Lists</h3>
+            <p class="muted">Unordered (<code>ul</code>) vs ordered (<code>ol</code>).</p>
+          </div>
+
+          <div class="example-grid">
+            <div class="panel preview">
+              <div class="grid-2 gap-md">
+                <div class="stack-xs">
+                  <p class="panel-mini-title">Unordered</p>
+                  <ul>
+                    <li>Milk</li>
+                    <li>Eggs</li>
+                    <li>Bread</li>
+                  </ul>
+                </div>
+                <div class="stack-xs">
+                  <p class="panel-mini-title">Ordered</p>
+                  <ol>
+                    <li>Install</li>
+                    <li>Configure</li>
+                    <li>Run</li>
+                  </ol>
+                </div>
+              </div>
+            </div>
+
+            <div class="panel code stack-xs">
+              <p class="panel-title">HTML</p>
+              <pre><code>&lt;ul&gt;
+  &lt;li&gt;Milk&lt;/li&gt;
+  &lt;li&gt;Eggs&lt;/li&gt;
+  &lt;li&gt;Bread&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Install&lt;/li&gt;
+  &lt;li&gt;Configure&lt;/li&gt;
+  &lt;li&gt;Run&lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+            </div>
+          </div>
+        </article>
+
+        <!-- Links and Images -->
+        <article class="card stack-sm">
+          <div class="example-header">
+            <h3>Links and Images</h3>
+            <p class="muted">Anchor tags (<code>a</code>) and images (<code>img</code>) with <code>alt</code>.</p>
+          </div>
+
+          <div class="example-grid">
+            <div class="panel preview stack-sm">
+              <p>
+                A link:
+                <a href="https://example.com" target="_blank" rel="noreferrer">example.com</a>
+              </p>
+
+              <figure class="stack-xs">
+                <img
+                  class="demo-img"
+                  src="https://picsum.photos/seed/odin/900/420"
+                  alt="A random placeholder landscape"
+                  loading="lazy"
+                />
+                <figcaption class="muted">Images should always have useful <code>alt</code> text.</figcaption>
+              </figure>
+            </div>
+
+            <div class="panel code stack-xs">
+              <p class="panel-title">HTML</p>
+              <pre><code>&lt;a href="https://example.com" target="_blank" rel="noreferrer"&gt;
+  example.com
+&lt;/a&gt;
+
+&lt;img
+  src="https://picsum.photos/seed/odin/900/420"
+  alt="A random placeholder landscape"
+  loading="lazy"
+/&gt;</code></pre>
+
+              <details class="note">
+                <summary>Notes</summary>
+                <ul>
+                  <li><code>alt</code> describes the image for screen readers (and when it fails to load).</li>
+                  <li><code>target="_blank"</code> should include <code>rel="noreferrer"</code> or <code>noopener</code>.</li>
+                </ul>
+              </details>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <!-- =======================================
+           CSS FOUNDATIONS
+      ======================================== -->
+      <section id="css" class="stack-lg">
+        <header class="section-header stack-xs">
+          <h2>CSS Foundations</h2>
+          <p class="muted">How CSS gets applied, how conflicts resolve, and core layout rules.</p>
+        </header>
+
+        <!-- Intro to CSS (3 methods) -->
+        <article class="card stack-sm">
+          <div class="example-header">
+            <h3>Intro to CSS (3 ways)</h3>
+            <p class="muted">Inline, internal (style tag), external (stylesheet). External is most common.</p>
+          </div>
+
+          <div class="example-grid">
+            <div class="panel preview stack-sm">
+              <p class="demo-inline" style="border-bottom: 2px dashed rgba(255,255,255,0.22);">
+                This line has a tiny <strong>inline style</strong> (border-bottom).
+              </p>
+              <p class="muted">The rest of this site uses an external stylesheet: <code>styles.css</code>.</p>
+            </div>
+
+            <div class="panel code stack-xs">
+              <p class="panel-title">INLINE (HTML)</p>
+              <pre><code>&lt;p style="border-bottom: 2px dashed #ccc;"&gt;
+  Inline styled text
+&lt;/p&gt;</code></pre>
+
+              <p class="panel-title">INTERNAL (HTML)</p>
+              <pre><code>&lt;style&gt;
+  .demo { color: hotpink; }
+&lt;/style&gt;</code></pre>
+
+              <p class="panel-title">EXTERNAL (HTML)</p>
+              <pre><code>&lt;link rel="stylesheet" href="styles.css" /&gt;</code></pre>
+            </div>
+          </div>
+        </article>
+
+        <!-- The Cascade -->
+        <article class="card stack-sm">
+          <div class="example-header">
+            <h3>The Cascade</h3>
+            <p class="muted">When multiple rules apply, the browser uses specificity + order (later wins if tied).</p>
+          </div>
+
+          <div class="example-grid">
+            <div class="panel preview stack-sm">
+              <p class="cascade-demo">This paragraph demonstrates the cascade.</p>
+              <p class="muted">
+                In DevTools → “Styles” panel, you’ll see crossed-out rules losing to the winner.
+              </p>
+            </div>
+
+            <div class="panel code stack-xs">
+              <p class="panel-title">HTML</p>
+              <pre><code>&lt;p class="cascade-demo"&gt;This paragraph demonstrates the cascade.&lt;/p&gt;</code></pre>
+
+              <p class="panel-title">CSS</p>
+              <pre><code>/* Earlier rule */
+.cascade-demo { color: var(--danger); }
+
+/* Later rule (same specificity) wins */
+.cascade-demo { color: var(--success); }</code></pre>
+            </div>
+          </div>
+        </article>
+
+        <!-- Inspecting HTML and CSS -->
+        <article class="card stack-sm">
+          <div class="example-header">
+            <h3>Inspecting HTML and CSS</h3>
+            <p class="muted">A “devtools-friendly” element with multiple rules to explore.</p>
+          </div>
+
+          <div class="example-grid">
+            <div class="panel preview stack-sm">
+              <button class="btn inspect-me">Inspect Me</button>
+              <p class="muted">Right click → Inspect → check computed styles (padding, border, background).</p>
+            </div>
+
+            <div class="panel code stack-xs">
+              <p class="panel-title">HTML</p>
+              <pre><code>&lt;button class="btn inspect-me"&gt;Inspect Me&lt;/button&gt;</code></pre>
+
+              <p class="panel-title">CSS</p>
+              <pre><code>.inspect-me { letter-spacing: 0.02em; }
+.inspect-me:hover { transform: translateY(-1px); }</code></pre>
+            </div>
+          </div>
+        </article>
+
+        <!-- Box Model -->
+        <article class="card stack-sm">
+          <div class="example-header">
+            <h3>The Box Model</h3>
+            <p class="muted">Content → padding → border → margin. (Inspect to see it.)</p>
+          </div>
+
+          <div class="example-grid">
+            <div class="panel preview stack-sm">
+              <div class="box-model">
+                <span class="box-label">Content</span>
+              </div>
+              <p class="muted">This element has padding, border, and margin. Inspect it.</p>
+            </div>
+
+            <div class="panel code stack-xs">
+              <p class="panel-title">HTML</p>
+              <pre><code>&lt;div class="box-model"&gt;
+  &lt;span class="box-label"&gt;Content&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+
+              <p class="panel-title">CSS</p>
+              <pre><code>.box-model {
+  margin: 14px 0;
+  padding: 18px;
+  border: 2px solid rgba(255,255,255,0.18);
+  border-radius: 14px;
+}</code></pre>
+            </div>
+          </div>
+        </article>
+
+        <!-- Block and Inline -->
+        <article class="card stack-sm">
+          <div class="example-header">
+            <h3>Block and Inline</h3>
+            <p class="muted">Block takes full width and starts new line. Inline flows in text.</p>
+          </div>
+
+          <div class="example-grid">
+            <div class="panel preview stack-sm">
+              <div class="block-demo">I am a block element (div)</div>
+              <div class="block-demo">I also start on a new line</div>
+
+              <p>
+                Inline elements:
+                <span class="inline-demo">span one</span>
+                <span class="inline-demo">span two</span>
+                <span class="inline-demo">span three</span>
+              </p>
+            </div>
+
+            <div class="panel code stack-xs">
+              <p class="panel-title">HTML</p>
+              <pre><code>&lt;div class="block-demo"&gt;I am a block element (div)&lt;/div&gt;
+&lt;div class="block-demo"&gt;I also start on a new line&lt;/div&gt;
+
+&lt;p&gt;
+  Inline elements:
+  &lt;span class="inline-demo"&gt;span one&lt;/span&gt;
+  &lt;span class="inline-demo"&gt;span two&lt;/span&gt;
+  &lt;span class="inline-demo"&gt;span three&lt;/span&gt;
+&lt;/p&gt;</code></pre>
+
+              <p class="panel-title">CSS</p>
+              <pre><code>.block-demo { display: block; }
+.inline-demo { display: inline; }</code></pre>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <!-- =======================================
+           FLEXBOX
+      ======================================== -->
+      <section id="flexbox" class="stack-lg">
+        <header class="section-header stack-xs">
+          <h2>Flexbox</h2>
+          <p class="muted">Container vs items, axes, growing/shrinking, and alignment.</p>
+        </header>
+
+        <!-- Intro to Flexbox -->
+        <article class="card stack-sm">
+          <div class="example-header">
+            <h3>Introduction to Flexbox</h3>
+            <p class="muted">Set <code>display: flex</code> on a container to control its children (flex items).</p>
+          </div>
+
+          <div class="example-grid">
+            <div class="panel preview stack-sm">
+              <div class="flex-demo">
+                <div class="flex-item">Item A</div>
+                <div class="flex-item">Item B</div>
+                <div class="flex-item">Item C</div>
+              </div>
+              <p class="muted">These items sit in a row because the parent is a flex container.</p>
+            </div>
+
+            <div class="panel code stack-xs">
+              <p class="panel-title">HTML</p>
+              <pre><code>&lt;div class="flex-demo"&gt;
+  &lt;div class="flex-item"&gt;Item A&lt;/div&gt;
+  &lt;div class="flex-item"&gt;Item B&lt;/div&gt;
+  &lt;div class="flex-item"&gt;Item C&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+              <p class="panel-title">CSS</p>
+              <pre><code>.flex-demo { display: flex; gap: 12px; }
+.flex-item { padding: 12px; border: 1px solid rgba(255,255,255,0.14); }</code></pre>
+            </div>
+          </div>
+        </article>
+
+        <!-- Growing and Shrinking -->
+        <article class="card stack-sm">
+          <div class="example-header">
+            <h3>Growing and Shrinking</h3>
+            <p class="muted">Use <code>flex</code> / <code>flex-grow</code> / <code>flex-shrink</code> to control sizing.</p>
+          </div>
+
+          <div class="example-grid">
+            <div class="panel preview stack-sm">
+              <div class="flex-demo">
+                <div class="flex-item grow-1">grow: 1</div>
+                <div class="flex-item grow-2">grow: 2 (bigger)</div>
+                <div class="flex-item grow-1">grow: 1</div>
+              </div>
+              <p class="muted">Middle item grows twice as much as the others.</p>
+            </div>
+
+            <div class="panel code stack-xs">
+              <p class="panel-title">CSS</p>
+              <pre><code>.grow-1 { flex: 1; }
+.grow-2 { flex: 2; }</code></pre>
+
+              <details class="note">
+                <summary>What does flex: 1 mean?</summary>
+                <p><code>flex: 1</code> is shorthand for grow/shrink/basis. In many cases it means “share remaining space equally.”</p>
+              </details>
+            </div>
+          </div>
+        </article>
+
+        <!-- Axes -->
+        <article class="card stack-sm">
+          <div class="example-header">
+            <h3>Axes</h3>
+            <p class="muted">
+              Main axis follows <code>flex-direction</code>. Cross axis is perpendicular.
+            </p>
+          </div>
+
+          <div class="example-grid">
+            <div class="panel preview stack-sm">
+              <div class="grid-2 gap-md">
+                <div class="stack-xs">
+                  <p class="panel-mini-title">Row (main axis →)</p>
+                  <div class="flex-demo row-axis">
+                    <div class="flex-item">1</div>
+                    <div class="flex-item">2</div>
+                    <div class="flex-item">3</div>
+                  </div>
+                </div>
+
+                <div class="stack-xs">
+                  <p class="panel-mini-title">Column (main axis ↓)</p>
+                  <div class="flex-demo col-axis">
+                    <div class="flex-item">1</div>
+                    <div class="flex-item">2</div>
+                    <div class="flex-item">3</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="panel code stack-xs">
+              <p class="panel-title">CSS</p>
+              <pre><code>.row-axis { flex-direction: row; }
+.col-axis { flex-direction: column; }</code></pre>
+            </div>
+          </div>
+        </article>
+
+        <!-- Alignment -->
+        <article class="card stack-sm">
+          <div class="example-header">
+            <h3>Alignment</h3>
+            <p class="muted">Use <code>justify-content</code> (main axis) and <code>align-items</code> (cross axis).</p>
+          </div>
+
+          <div class="example-grid">
+            <div class="panel preview stack-sm">
+              <div class="flex-align">
+                <div class="flex-item">A</div>
+                <div class="flex-item">B</div>
+                <div class="flex-item">C</div>
+              </div>
+              <p class="muted">This box centers items horizontally and vertically.</p>
+            </div>
+
+            <div class="panel code stack-xs">
+              <p class="panel-title">CSS</p>
+              <pre><code>.flex-align {
+  display: flex;
+  justify-content: center; /* main axis */
+  align-items: center;     /* cross axis */
+  gap: 12px;
+  min-height: 120px;
+}</code></pre>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <footer class="page-footer">
+        <p class="muted">
+          Done. When you finish the next Odin lessons, we can add sections (selectors, pseudo-classes, positioning, etc.).
+        </p>
+      </footer>
+    </main>
+  </body>
+</html>
