@@ -1,0 +1,177 @@
+{
+    "response_id": 29790012,
+    "datetime": "2025-12-19 18:45:49",
+    "datetime_modified": "2025-12-19 18:45:49",
+    "answers": [
+        {
+            "question": "FORM for AUTOMATED User Creation\/Modification\/Termination for Licensed and Self-Licensed Practices",
+            "type": "hidden",
+            "answer": "FORM for AUTOMATED User Creation\/Modification\/Termination for Licensed and Self-Licensed Practices"
+        },
+        {
+            "question": "Form_Contact_Name",
+            "type": "short_answer",
+            "answer": "Emily Wright"
+        },
+        {
+            "question": "Practice Name",
+            "type": "short_answer",
+            "answer": "AAAVBP"
+        },
+        {
+            "question": "Contact Phone",
+            "type": "short_answer",
+            "answer": "291112222"
+        },
+        {
+            "question": "Contact Email",
+            "type": "email",
+            "answer": "emily@vbp.com.au"
+        },
+        {
+            "question": "Xplan_Site",
+            "type": "drop_down",
+            "answer": "CWT"
+        },
+        {
+            "question": "Licensed_SelfLicenced",
+            "type": "drop_down",
+            "answer": "Licensed (ASVW)"
+        },
+        {
+            "question": "Modify Existing Users",
+            "type": "single_checkbox",
+            "answer": "Yes"
+        },
+        {
+            "question": "Estimated New User Cost Per Annum (Ex-GST) - Lavista Pricing",
+            "type": "calculation",
+            "answer": "$0.00"
+        },
+        {
+            "question": "User name",
+            "type": "short_answer",
+            "answer": "scollins"
+        },
+        {
+            "question": "IPS",
+            "type": "choose_one",
+            "answer": "N\/A"
+        },
+        {
+            "question": "Risk Res.",
+            "type": "choose_one",
+            "answer": "N\/A"
+        },
+        {
+            "question": "W'Solver",
+            "type": "choose_one",
+            "answer": "+"
+        },
+        {
+            "question": "WS Investments",
+            "type": "choose_one",
+            "answer": "N\/A"
+        },
+        {
+            "question": "Xtools",
+            "type": "choose_one",
+            "answer": "+"
+        },
+        {
+            "question": "XtoolsPlus",
+            "type": "choose_one",
+            "answer": "+"
+        },
+        {
+            "question": "Commpay",
+            "type": "choose_one",
+            "answer": "N\/A"
+        },
+        {
+            "question": "Alerts",
+            "type": "choose_one",
+            "answer": "+"
+        },
+        {
+            "question": "Estimated Change in User Cost Per Month (Ex-GST) - CPAL Pricing",
+            "type": "calculation",
+            "answer": "$154.68"
+        },
+        {
+            "question": "Estimated Change in User Cost Per Annum (Ex-GST) - CPAL Pricing",
+            "type": "calculation",
+            "answer": "$1856.16"
+        },
+        {
+            "question": "Estimated Change in User Cost Per Month (Ex-GST) - AAP\/Lavista Pricing",
+            "type": "calculation",
+            "answer": "$309.36"
+        },
+        {
+            "question": "Estimated Change in User Cost Per Annum (Ex-GST) - AAP\/Lavista Pricing",
+            "type": "calculation",
+            "answer": "$3712.32"
+        },
+        {
+            "question": "Salesforce_Case_ID",
+            "type": "short_answer",
+            "answer": "11111111"
+        },
+        {
+            "question": "Entity Id of Modify User",
+            "type": "short_answer",
+            "answer": "11111111"
+        },
+        {
+            "question": "Email Address of Modify User",
+            "type": "short_answer",
+            "answer": "sarah@vbp.com.au"
+        },
+        {
+            "question": "Is this a test?",
+            "type": "single_checkbox",
+            "answer": "Yes"
+        },
+        {
+            "question": "Test",
+            "type": "short_answer",
+            "answer": "Test"
+        },
+        {
+            "question": "Sender_Email_Address",
+            "type": "calculation",
+            "answer": "cwt@cpal.com.au"
+        },
+        {
+            "question": "Signature",
+            "type": "signature",
+            "answer": "https:\/\/user.snapforms.com.au\/getFile\/OobTnZjx809Je7jqb6DBaAn1UFB7CAnCqSJB4tCG.png"
+        },
+        {
+            "question": "Date",
+            "type": "date_select",
+            "answer": "19\/12\/2025"
+        },
+        {
+            "question": "Form Record Type",
+            "type": "drop_down",
+            "answer": "0129o0000004JMMAA2"
+        },
+        {
+            "question": "Case origin",
+            "type": "drop_down",
+            "answer": "Snapforms"
+        },
+        {
+            "question": "Category",
+            "type": "drop_down",
+            "answer": "XPlan User Detail Changes"
+        },
+        {
+            "question": "Description",
+            "type": "short_answer",
+            "answer": "XPlan User Detail Changes submitted from Snapforms"
+        }
+    ]
+}
