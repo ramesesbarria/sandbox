@@ -1,0 +1,43 @@
+response_id,,Response ID,<answer>
+datetime,,Submission Date & Time,<answer>
+,,,
+Question,Type,,
+,,Contact Details,
+Form_Contact_Name,short_answer,Contact Name *,<answer>
+Practice Name,short_answer,Practice Name *,<answer>
+Contact Phone,short_answer,Contact Phone,<answer>
+Contact Email,email,Contact Email *,<answer>
+Xplan_Site,drop_down,Which XPlan site? *,<answer>
+Licensed_SelfLicenced,drop_down,Are you licensed or self-licensed? *,<answer>
+Licensee,drop_down,Which Licensee? *,<answer>
+Self_Licensed_Licensee_Name_Answer,short_answer,What is the name of your Licensee? *,<answer>
+,,,
+,,User Details,
+Modify Existing Users,single_checkbox,Modify Existing Users,<answer>
+,,,
+,,Modify Users,
+User name,short_answer,User ID (eg. 'jsmith1') *,<answer>
+NewIPS,choose_one,IPS,<answer>
+NewRiskRes.,choose_one,Risk Res.,<answer>
+NewW'Solver,choose_one,W'Solver,<answer>
+NewWSInv.,choose_one,WS Inv.,<answer>
+NewXtools,choose_one,Xtools,<answer>
+NewXtoolsPlus,choose_one,Xtools+,<answer>
+Adviser_Commpay,choose_one,Commpay,<answer>
+NewAlerts,choose_one,Alerts,<answer>
+Enable_Existing_User,single_checkbox,"Is this user currently virtual ('No-Login') and you are wanting to convert to active, or has it been previouly terminated and is being re/enabled? Additional Information (Important)",<answer>
+Modify_Access_Level,drop_down,What type of user in being re/enabled?,<answer>
+New_User_SMS_Gateway_Checkbox,single_checkbox,Do you want to apply an SMS Gateway to this user?,<answer>
+New_User_SMS_Gateway,drop_down,"Please specify the SMS Gateway provider, if known.",<answer>
+New_Other_SMS_Gateway_Name,short_answer,Please specify the SMS gateway provider name or domain,<answer>
+,,,
+,,User Module Details,
+Effective_Date_Checkbox,single_checkbox,Do you want to schedule the requested changes to take place at a future date? (must be within three business days from date of submission),<answer>
+Effective Date,date_select,Effective Date,<answer>
+"Any additional comments to assist us with your request (eg. adding new user to multiple groups, etc.):",long_answer,"Any additional comments to assist us with your request (eg. adding new user to multiple groups, etc.):",<answer>
+,,,
+,,Advice Tech Fields,
+Salesforce_Case_ID,short_answer,Salesforce_Case_ID *,<answer>
+Entity Id of Modify User,short_answer,Entity Id of Modify User *,<answer>
+Email Address of Modify User,short_answer,Email Address of Modify User *,<answer>
+Sender_Email_Address,calculation,Sender_Email_Address,<answer>

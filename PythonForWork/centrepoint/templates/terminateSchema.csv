@@ -1,0 +1,36 @@
+response_id,,Response ID,<answer>
+datetime,,Submission Date & Time,<answer>
+,,,
+Question,Type,,
+,,Contact Details,
+Form_Contact_Name,short_answer,Contact Name *,<answer>
+Practice Name,short_answer,Practice Name *,<answer>
+Contact Phone,short_answer,Contact Phone,<answer>
+Contact Email,email,Contact Email *,<answer>
+Xplan_Site,drop_down,Which XPlan site? *,<answer>
+Licensed_SelfLicenced,drop_down,Are you licensed or self-licensed? *,<answer>
+Licensee,drop_down,Which Licensee? *,<answer>
+Self_Licensed_Licensee_Name_Answer,short_answer,What is the name of your Licensee? *,<answer>
+,,,
+,,User Details,
+Terminate Exiting Users,single_checkbox,Terminate Exiting Users,<answer>
+,,,
+,,Terminate User,
+Terminated Username,short_answer,Terminated User ID (eg. 'jsmith1') *,<answer>
+Terminated User Email address,email,Terminated User Email address *,<answer>
+Reason for termination,short_answer,Reason for termination *,<answer>
+TransferCheckbox,single_checkbox,"Do you want to transfer tasks, roles, templates, etc. to another user?",<answer>
+Transfer_To_New_User_Checkbox,single_checkbox,Do you want the terminated users tasks to be transferred to the newly created user above?,<answer>
+Transfer_Tasks,short_answer,User ID of existing user to transfer to? (eg. 'jsmith1') *,<answer>
+,,,
+,,,
+,,User Module Details,
+Effective_Date_Checkbox,single_checkbox,Do you want to schedule the requested changes to take place at a future date? (must be within three business days from date of submission),<answer>
+Effective Date,date_select,Effective Date,<answer>
+"Any additional comments to assist us with your request (eg. adding new user to multiple groups, etc.):",long_answer,"Any additional comments to assist us with your request (eg. adding new user to multiple groups, etc.):",<answer>
+,,,
+,,Advice Tech Fields,
+Salesforce_Case_ID,short_answer,Salesforce_Case_ID *,<answer>
+Entity Id of Terminated User,short_answer,Entity Id of Terminated User *,<answer>
+Entity Id of Transfer User,short_answer,Entity Id of Transfer User *,<answer>
+Sender_Email_Address,calculation,Sender_Email_Address,<answer>
